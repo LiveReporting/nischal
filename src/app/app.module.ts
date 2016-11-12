@@ -3,6 +3,9 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {DetailPage} from '../pages/detail/detail';
+import { SaveData } from '../providers/save-data'
+
+/// <reference path="../../../typings/index.d.ts" />
 
 @NgModule({
   declarations: [
@@ -20,6 +23,6 @@ import {DetailPage} from '../pages/detail/detail';
     DetailPage
 
   ],
-  providers: []
+  providers: [SaveData]
 })
 export class AppModule {}
