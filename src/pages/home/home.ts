@@ -4,7 +4,7 @@ import { NavController,Platform } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 import {DetailPage} from '../detail/detail';
 import {SaveData} from '../../providers/save-data';
-
+import {ViewDataPage} from '../view-data/view-data';
 declare var google;
 @Component({
   selector: 'home-page',
@@ -12,8 +12,10 @@ declare var google;
 })
 export class HomePage {
   public all_data = [];
+  home_views: string;
 
   @ViewChild('map') mapElement: ElementRef;
+
   map: any;
 
   constructor(public navCtrl: NavController,
@@ -22,7 +24,7 @@ export class HomePage {
               private zone: NgZone
             ) {
     // console.log("asdasd");\
-
+    this.home_views = "maps";
 
 
   }
@@ -30,8 +32,12 @@ export class HomePage {
 //   ionViewLoaded(){
 //   this.loadMap();
 // }
+
 ionViewDidEnter(){
-  this.loadData();
+  console.log("entering");
+    this.home_views="maps";
+    this.loadData();
+
 }
 ionViewDidLoad() {
   // this.loadMap();
@@ -49,6 +55,14 @@ ionViewWillLeave() {
 openDetails(){
   this.navCtrl.push(DetailPage);
 
+}
+openMaps(){
+  console.log('maps'+this.home_views);
+}
+
+viewData(){
+this.navCtrl.push(ViewDataPage);
+  console.log("viewdata"+this.home_views);
 }
 loadData(){
   this.saveData.getAll()
@@ -107,12 +121,15 @@ displayMarker(allData:any){
             animation: google.maps.Animation.DROP,
             position: latLng
           });
+          let infoWindow = new google.maps.InfoWindow({
+              content: d.ques1
+          });
+          google.maps.event.addListener(marker, 'click', function () {
+              infoWindow.open(this.map, marker);
+          });
+
+
       }
-
-        // marker.setMap(this.map);
-
-
-
     }
 
   }, (err) => {

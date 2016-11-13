@@ -1,0 +1,51 @@
+<ion-header no-shadow>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button (click)="openDetails()"><ion-icon  class="header-icon" name="add"></ion-icon></button>
+    </ion-buttons>
+    <ion-segment center class="header-segment" [(ngModel)]="home_views">
+      <ion-segment-button value="maps" (click)="openMaps()" >
+        Map
+      </ion-segment-button>
+      <ion-segment-button value="view-data" (click)="viewData()">
+        View Data
+      </ion-segment-button>
+    </ion-segment>
+
+        <ion-buttons left>
+      <ion-icon class="header-icon" name="md-list"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-card *ngFor="let item of all_data" (click)="itemSelected(item)">
+  <ion-card-header>
+    <ion-row>
+        <ion-col width-65>
+          <div class="data_header">
+            {{item.ques1}}
+          </div>
+        </ion-col>
+
+        <ion-col width-35>
+          <button ion-button >
+            <ion-icon  name="md-cloud-upload" class="upload"></ion-icon>
+          </button>
+          <button ion-button >
+            <ion-icon  name="md-clipboard" class="edit"></ion-icon>
+          </button>
+          <button ion-button >
+            <ion-icon  name="ios-trash" class="delete"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+
+  </ion-card-header>
+
+  <ion-card-content>
+    {{item.lat}}
+  </ion-card-content>
+</ion-card>
+</ion-content>

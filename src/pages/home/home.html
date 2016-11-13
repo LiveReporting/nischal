@@ -11,38 +11,27 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header> -->
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons start>
-      <button>
-        <ion-icon name="create"></ion-icon>
-      </button>
-    </ion-buttons>
 
-    <ion-segment>
-      <ion-segment-button value="new">
-        New
+<ion-header no-shadow>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button (click)="openDetails()"><ion-icon  class="header-icon" name="add"></ion-icon></button>
+    </ion-buttons>
+    <ion-segment  class="header-segment" [(ngModel)]="home_views">
+      <ion-segment-button value="maps" (click)="openMaps()" >
+        Map
       </ion-segment-button>
-      <ion-segment-button value="hot">
-        Hot
+      <ion-segment-button value="view-data" (click)="viewData()">
+        View Data
       </ion-segment-button>
     </ion-segment>
 
-    <ion-buttons end>
-      <button>
-        <ion-icon name="more"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header> -->
-<ion-header no-shadow>
-  <ion-toolbar>
-    <ion-buttons start>
-      <ion-icon name="create"></ion-icon>
+        <ion-buttons left>
+      <ion-icon class="header-icon" name="md-list"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <div #map id="map"></div>
+
+  <div #map id="map" ></div>
 </ion-content>
