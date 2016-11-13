@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform , AlertController} from 'ionic-angular';
 import {Validators, FormBuilder,FormGroup ,FormControl} from '@angular/forms';
 import {SaveData} from '../../providers/save-data';
 import { Geolocation } from 'ionic-native';
@@ -38,7 +38,8 @@ export class DetailPage {
     });
   constructor(public navCtrl: NavController ,
               private formBuilder: FormBuilder,
-              private saveData: SaveData
+              private saveData: SaveData,
+              public alertCtrl: AlertController
               ) {
 
 
@@ -50,15 +51,7 @@ export class DetailPage {
     this.navCtrl.pop();
   }
 
-getGPS(){
-  Geolocation.getCurrentPosition().then((position) => {
-    console.log( position.coords.latitude+"::::"+ position.coords.longitude+"::::"+position.coords.accuracy );
-    this.questions.value.lat = position.coords.latitude;
-    this.questions.value.lng = position.coords.longitude;
-    this.questions.value.accuracy=position.coords.accuracy
-  });
 
-}
 
   ionViewDidLoad() {
     // console.log('Hello DetailPage Page');
@@ -77,6 +70,41 @@ getGPS(){
        ques3: ''
 
     });
+  }
+
+  showGpsConfirm() {
+    console.log('confirm gps');
+    Geolocation.getCurrentPosition().then((position) => {
+      // console.log( position.coords.latitude+"::::"+ position.coords.longitude+"::::"+position.coords.accuracy );
+      // this.questions.value.lat = position.coords.latitude;
+      // this.questions.value.lng = position.coords.longitude;
+      // this.questions.value.accuracy=position.coords.accuracy
+
+      let confirm = this.alertCtrl.create({
+        title: 'Confirm Gps',
+        message: "Lattitude ::"+ position.coords.latitude +" \nLongitude ::"+position.coords.longitude+ " \nAccuracy ::" + position.coords.accuracy,
+        buttons: [
+          {
+            text: 'Use',
+            handler: () => {
+              // console.log('Disagree clicked');
+              this.questions.value.lat = position.coords.latitude;
+              this.questions.value.lng = position.coords.longitude;
+              this.questions.value.accuracy=position.coords.accuracy;
+            }
+          },
+          {
+            text: 'Retry',
+            handler: () => {
+              // console.log('Agree clicked');
+              this.showGpsConfirm();
+            }
+          }
+        ]
+      });
+      confirm.present();
+    });
+
   }
 
 }

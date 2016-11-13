@@ -21,6 +21,9 @@ ion-icon.header-icon{
 }
 
 ion-segment.header-segment{
+  width: 70%;
+}
+.ios ion-segment.header-segment{
   padding-left: 100px;
   width: 70%;
 }
