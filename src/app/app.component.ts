@@ -1,5 +1,5 @@
 import { Component , ViewChild} from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform,Events } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
@@ -15,7 +15,8 @@ export class MyApp {
 
   rootPage = HomePage;
   pages: Array<{title: string, component: any}>;
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform,
+              public events: Events) {
     this.pages = [
       {title: 'Home',component: HomePage},
       {title: 'Collect Data',component: DetailPage},
@@ -36,5 +37,12 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+  menuClosed() {
+    this.events.publish('menu:closed', '');
+  }
+
+  menuOpened() {
+      this.events.publish('menu:opened', '');
   }
 }

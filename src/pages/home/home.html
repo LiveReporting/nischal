@@ -18,16 +18,16 @@
       <button ion-button (click)="openDetails()"><ion-icon  class="header-icon" name="add"></ion-icon></button>
     </ion-buttons>
     <ion-segment  class="header-segment" [(ngModel)]="home_views">
-      <ion-segment-button value="maps" (click)="openMaps()" >
+      <ion-segment-button value="maps" >
         Map
       </ion-segment-button>
       <ion-segment-button value="view-data" (click)="viewData()">
         View Data
       </ion-segment-button>
     </ion-segment>
-  
+
     <button ion-button left menuToggle>
-      <ion-icon class="header-icon" name="menu" ></ion-icon>
+      <ion-icon class="header-icon" name="menu"  ></ion-icon>
     </button>
   </ion-toolbar>
 </ion-header>

@@ -46,10 +46,10 @@ export class SaveData {
                 });
 
                 // Listen for changes on the database.
-                  // this._db.changes({ live: true, since: 'now', include_docs: true})
-                  //     .on('change', this.onDatabaseChange);
-                  // console.log("asdasd");
-                  // console.log(this._data);
+                  this._db.changes({ live: true, since: 'now', include_docs: true})
+                      .on('change', this.onDatabaseChange);
+                  console.log("asdasd");
+                  console.log(this._data);
                 return this._data;
             });
     } else {
@@ -58,9 +58,38 @@ export class SaveData {
         return Promise.resolve(this._data);
     }
 }
-onDatabaseChange(){
-
+update(data) {
+    return this._db.put(data);
 }
 
+delete(data) {
+    return this._db.remove(data);
+}
+
+private onDatabaseChange = (change) => {
+    var index = this.findIndex(this._data, change.id);
+    var data = this._data[index];
+
+    if (change.deleted) {
+        if (data) {
+            this._data.splice(index, 1); // delete
+        }
+    } else {
+        change.doc.Date = new Date(change.doc.Date);
+        if (data && data._id === change.id) {
+            this._data[index] = change.doc; // update
+        } else {
+            this._data.splice(index, 0, change.doc) // insert
+        }
+    }
+}
+private findIndex(array, id) {
+    var low = 0, high = array.length, mid;
+    while (low < high) {
+    mid = (low + high) >>> 1;
+    array[mid]._id < id ? low = mid + 1 : high = mid
+    }
+    return low;
+}
 
 }

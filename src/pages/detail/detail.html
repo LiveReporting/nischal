@@ -14,49 +14,49 @@
   </ion-navbar>
 
 </ion-header>
+<ion-content>
+  <ion-slides #questionSlider pager [options]="{onlyExternal: true}" >
+      <ion-slide >
+        <ion-list>
+            <form [formGroup]="questionForm">
+              <ion-label >Question 1?</ion-label>
+                <ion-item>
+                    <ion-input #question1  formControlName="question1" type="text"></ion-input>
+                </ion-item>
+            </form>
+        </ion-list>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Question 2?</ion-label>
+            <ion-item>
+                <ion-input #question2  formControlName="question2" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide>
+        <form [formGroup]="questionForm">
+          <ion-label >Question 3?</ion-label>
+            <ion-item>
+                <ion-input #question3  formControlName="question3" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide>
+        <img [src]="base64Image" *ngIf="base64Image" />
+        <div class="" width-100>
+          <button ion-button color="primary" (click)="showGpsConfirm()">GPS</button>
+          <button ion-button color="primary" (click)="takePicture()">Take Photo</button>
+        </div>
 
+        <button ion-button color="secondary" (click)="save() ">Save</button>
 
-<ion-content padding>
-  <!-- <div [formGroup]="myGroup">
-      <input formControlName="firstName">
-  </div> -->
-    <ion-list >
+      </ion-slide>
+    </ion-slides>
+    <div class="" padding>
+        <button ion-button (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
+        <button ion-button (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></button>
+    </div>
 
-      <form [formGroup]="questions" >
-          <ion-item no-lines>
-            <ion-label >Question 1?</ion-label>
-          </ion-item>
-          <ion-item>
-              <!-- <ion-input #firstName (change)="elementChanged(firstName)" ngControl="firstName" type="text" [class.invalid]="!slideOneForm.controls.firstName.valid && (firstNameChanged || submitAttempt)"></ion-input> -->
-              <ion-input formControlName="ques1"  ></ion-input>
-          </ion-item>
-
-          <!-- <ion-item *ngIf="!slideOneForm.controls.firstName.valid  && (firstNameChanged || submitAttempt)">
-              <p>Please enter a valid name.</p>
-          </ion-item> -->
-
-          <ion-item no-lines>
-            <ion-label >Question 2?</ion-label>
-          </ion-item>
-          <ion-item>
-              <!-- <ion-input #firstName (change)="elementChanged(firstName)" ngControl="firstName" type="text" [class.invalid]="!slideOneForm.controls.firstName.valid && (firstNameChanged || submitAttempt)"></ion-input> -->
-              <ion-input formControlName="ques2" ></ion-input>
-          </ion-item>
-
-          <ion-item no-lines>
-            <ion-label >Question 3?</ion-label>
-          </ion-item>
-          <ion-item>
-              <!-- <ion-input #firstName (change)="elementChanged(firstName)" ngControl="firstName" type="text" [class.invalid]="!slideOneForm.controls.firstName.valid && (firstNameChanged || submitAttempt)"></ion-input> -->
-              <ion-input formControlName="ques3" ></ion-input>
-          </ion-item>
-
-      </form>
-
-  </ion-list>
-  <button ion-button color="secondary" (click)="save() ">Save</button>
-
-
-  <button ion-button color="primary" (click)="showGpsConfirm()">GPS</button>
 
 </ion-content>
