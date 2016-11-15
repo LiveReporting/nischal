@@ -2,7 +2,7 @@ import { Component , NgZone} from '@angular/core';
 import { NavController ,NavParams} from 'ionic-angular';
 import {DetailPage} from '../detail/detail';
 import {SaveData} from '../../providers/save-data';
-
+import {DataPage} from '../data/data';
  /*
   Generated class for the ViewData page.
 
@@ -60,9 +60,9 @@ export class ViewDataPage {
   openDetails(){
     this.navCtrl.push(DetailPage);
   }
-  editData(item){
+  viewAllData(item){
     this.params = item;
-    this.navCtrl.push(DetailPage,{edit_data:item});
+    this.navCtrl.push(DataPage,{edit_data:item});
   }
 
   removeData(item){

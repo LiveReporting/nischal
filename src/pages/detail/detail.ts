@@ -28,9 +28,11 @@ export class DetailPage {
   //     })
   //   });
   public base64Image: string;
+  public isNew = true;
   public questionForm: FormGroup;
     public controls = (value: any = {}) => ({
-      'id': [value.id],
+      _id: [value._id],
+      _rev:[value._rev],
       question1: [value.question1,Validators.required],
       question2: [value.question2,Validators.required],
       question3: [value.question3,Validators.required],
@@ -73,7 +75,16 @@ export class DetailPage {
                 //   question3: ['',Validators.required]
                 //
                 // });
-                let values = this.navParams.get('edit_data') || {};
+                console.log(this.navParams.get('edit_data'));
+                let values;
+                if(this.navParams.get('edit_data')){
+                  console.log("papapapa");
+                  values = this.navParams.get('edit_data');
+                  this.isNew = false;
+                }else{
+                  console.log("nini");
+                  values ={}
+                }
                 this.buildData(values);
 
 
@@ -124,13 +135,26 @@ export class DetailPage {
         console.log(err);
     });
   }
+  //
+  // save(){
+  //   console.log("asdas ::");
+  //   console.log(this.questionForm.value);
+  //   this.saveData.add(this.questionForm.value);
+  //   this.navCtrl.pop();
+  // }
+  save() {
+       if (this.isNew) {
+         console.log('new data saveing');
+           this.saveData.add(this.questionForm.value)
+               .catch(console.error.bind(console));
+       } else {
+         console.log('old data saveing');
 
-  save(){
-    console.log("asdas ::");
-    console.log(this.questionForm.value);
-    this.saveData.add(this.questionForm.value);
-    this.navCtrl.pop();
-  }
+           this.saveData.update(this.questionForm.value)
+               .catch(console.error.bind(console));
+       }
+       this.navCtrl.pop();
+   }
 
   showGpsConfirm() {
     console.log('confirm gps');

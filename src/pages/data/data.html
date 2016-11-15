@@ -1,0 +1,25 @@
+<!--
+  Generated template for the Data page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>data</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let q of formQues" (click) = "editData(data)">
+    <ion-card-header>
+      {{q}}
+    </ion-card-header>
+    <ion-card-content>
+       {{data[q]}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

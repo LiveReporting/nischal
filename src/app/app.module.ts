@@ -3,6 +3,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {DetailPage} from '../pages/detail/detail';
+import {DataPage} from '../pages/data/data';
 import { SaveData } from '../providers/save-data'
 import {ViewDataPage} from '../pages/view-data/view-data';
 /// <reference path="../../../typings/index.d.ts" />
@@ -12,7 +13,8 @@ import {ViewDataPage} from '../pages/view-data/view-data';
     MyApp,
     HomePage,
     DetailPage,
-    ViewDataPage
+    ViewDataPage,
+    DataPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -22,8 +24,8 @@ import {ViewDataPage} from '../pages/view-data/view-data';
     MyApp,
     HomePage,
     DetailPage,
-    ViewDataPage
-
+    ViewDataPage,
+    DataPage
   ],
   providers: [SaveData]
 })
