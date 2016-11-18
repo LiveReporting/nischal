@@ -6,7 +6,7 @@ import {DetailPage} from '../pages/detail/detail';
 import {DataPage} from '../pages/data/data';
 import { SaveData } from '../providers/save-data'
 import {ViewDataPage} from '../pages/view-data/view-data';
-/// <reference path="../../../typings/index.d.ts" />
+import {SaveToMem} from '../providers/save-to-mem';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,6 @@ import {ViewDataPage} from '../pages/view-data/view-data';
     ViewDataPage,
     DataPage
   ],
-  providers: [SaveData]
+  providers: [SaveData,SaveToMem]
 })
 export class AppModule {}

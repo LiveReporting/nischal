@@ -10,43 +10,149 @@
     <button ion-button left menuToggle>
       <ion-icon class="header-icon" name="menu" ></ion-icon>
     </button>
-    <ion-title>Collect Data</ion-title>
+    <ion-title>GENERAL INFORMATION</ion-title>
   </ion-navbar>
 
 </ion-header>
 <ion-content>
-  <ion-slides #questionSlider pager [options]="{onlyExternal: true}" >
+  <ion-slides #questionSlider pager [options]="{onlyExternal: true}" class="questionSlider" >
       <ion-slide >
         <ion-list>
             <form [formGroup]="questionForm">
-              <ion-label >Question 1?</ion-label>
+              <ion-label >Name of Surveyor?</ion-label>
                 <ion-item>
-                    <ion-input #question1  formControlName="question1" type="text"></ion-input>
+                    <ion-input #input formControlName="nameOfSurveyor" type="text"></ion-input>
                 </ion-item>
             </form>
         </ion-list>
       </ion-slide>
       <ion-slide >
         <form [formGroup]="questionForm">
-          <ion-label >Question 2?</ion-label>
+          <ion-label >Name of Location?</ion-label>
             <ion-item>
-                <ion-input #question2  formControlName="question2" type="text"></ion-input>
+                <ion-input #input  formControlName="nameOfLocation" type="text"></ion-input>
             </ion-item>
         </form>
       </ion-slide>
-      <ion-slide>
+      <ion-slide >
         <form [formGroup]="questionForm">
-          <ion-label >Question 3?</ion-label>
+          <ion-label >Date of Survey?</ion-label>
             <ion-item>
-                <ion-input #question3  formControlName="question3" type="text"></ion-input>
+                <ion-input  #input formControlName="dateOfSurvey" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Number of Representative of WSCC?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="numberOfRepresentativeOfWSCC" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Name Of Local Representative ?</ion-label>
+            <ion-item>
+                <ion-input  #input formControlName="nameOfLocalRepresentative" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Take Photo?</ion-label>
+            <ion-item>
+
+                <!-- <ion-input formControlName="takePhoto" type="input"></ion-input> -->
+                <button #input center ion-button color="primary" (click)="takePicture()">Take Photo</button>
+
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Position?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="position" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Mobile Number?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="mobileNumber" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Name of Scheme?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="nameOfScheme" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Name of VDC?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="nameOfVDC" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Ward Number?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="wardNumber" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Total Male Population?</ion-label>
+            <ion-item>
+                <ion-input  #input formControlName="totalMalePopulation" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Total Female Population?</ion-label>
+            <ion-item>
+                <ion-input  #input formControlName="totalFemalePopulation" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Total Large Cattle?</ion-label>
+            <ion-item>
+                <ion-input  #input formControlName="totalLargeCattle" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Total Small Cattle?</ion-label>
+            <ion-item>
+                <ion-input #input  formControlName="totalSmallCattle" type="text"></ion-input>
+            </ion-item>
+        </form>
+      </ion-slide>
+      <ion-slide >
+        <form [formGroup]="questionForm">
+          <ion-label >Population ten years back?</ion-label>
+            <ion-item>
+                <ion-input  #input formControlName="populatioNTenYearsBack" type="text"></ion-input>
             </ion-item>
         </form>
       </ion-slide>
       <ion-slide>
-        <img [src]="base64Image" *ngIf="base64Image" />
         <div class="" width-100>
           <button ion-button color="primary" (click)="showGpsConfirm()">GPS</button>
-          <button ion-button color="primary" (click)="takePicture()">Take Photo</button>
         </div>
 
         <button ion-button color="secondary" (click)="save() ">Save</button>
@@ -57,6 +163,7 @@
         <button ion-button (click)="prev()"><ion-icon name="arrow-back"></ion-icon> Prev</button>
         <button ion-button (click)="next()">Next <ion-icon name="arrow-forward"></ion-icon></button>
     </div>
+    <img [src]="base64ImageShow" *ngIf="base64ImageShow" />
 
 
 </ion-content>

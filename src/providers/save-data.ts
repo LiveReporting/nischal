@@ -21,7 +21,7 @@ export class SaveData {
     console.log('Hello SaveData Provider');
   }
   initDB() {
-      this._db = new PouchDB('seconddb', { adapter: 'websql' });
+      this._db = new PouchDB('rws', { adapter: 'websql' });
   }
 
   add(data) {
